@@ -39,10 +39,11 @@ public class main {
         //Create instance of Scanner
         Scanner input = new Scanner(System.in);
         //Create schedule transport
-        ScheduleTransport scheduleTransport = new ScheduleTransport();
+        Methods methods = new Methods();
 
         //define variables
         String name = "";
+        Integer selectedID = 0;
         Boolean go = true;
         Integer typeChoose;
         Integer menuOption;
@@ -59,13 +60,13 @@ public class main {
                     student.setId(input.nextInt());
                     //name
                     System.out.println("Please enter student name: ");
-                    student.setName(input.nextLine());
+                    student.setName(input.next());
                     //age
                     System.out.println("Please enter student age: ");
                     student.setAge(input.nextInt());
                     //address
                     System.out.println("Please enter student address: ");
-                    student.setAddress(input.nextLine());
+                    student.setAddress(input.next());
                     //phone
                     System.out.println("Please enter student phone: ");
                     student.setPhone(input.nextInt());
@@ -75,7 +76,9 @@ public class main {
                     //fees
                     System.out.println("Please enter student Fees: ");
                     student.setFees(input.nextDouble());
-                    System.out.println("PRINTING STUDENT DATA: ");
+                    //Save to DB
+                    methods.saveStudent(student);
+                    System.out.println("STUDENT ADDED TO DB, PRINTING DATA: ");
                     System.out.println("==============================================");
                     System.out.println(student.printStudent());
                     System.out.println("==============================================");
@@ -87,23 +90,25 @@ public class main {
                     administrative.setId(input.nextInt());
                     //name
                     System.out.println("Please enter administrative name: ");
-                    administrative.setName(input.nextLine());
+                    administrative.setName(input.next());
                     //age
                     System.out.println("Please enter administrative age: ");
                     administrative.setAge(input.nextInt());
                     //address
                     System.out.println("Please enter administrative address: ");
-                    administrative.setAddress(input.nextLine());
+                    administrative.setAddress(input.next());
                     //phone
                     System.out.println("Please enter administrative phone: ");
                     administrative.setPhone(input.nextInt());
                     //year
                     System.out.println("Please enter administrative workarea: ");
-                    administrative.setWorkArea(input.nextLine());
+                    administrative.setWorkArea(input.next());
                     //fees
                     System.out.println("Please enter administrative contract: ");
-                    administrative.setContract(input.nextLine());
-                    System.out.println("PRINTING ADMINISTRATIVE DATA: ");
+                    administrative.setContract(input.next());
+                    //Save to DB
+                    methods.saveAdministrative(administrative);
+                    System.out.println("ADMINISTRATIVE ADDED TO DB, PRINTING DATA: ");
                     System.out.println("==============================================");
                     System.out.println(administrative.printAdministrative());
                     System.out.println("==============================================");
@@ -114,10 +119,30 @@ public class main {
                     System.out.println("'1' for students, \n '2  for administrative ");
                     System.out.println("PRINTING SCHEDULE AND TRANSPORT DATA: ");
                     System.out.println("==============================================");
-                    String s = scheduleTransport.scheduleAndTransport(input.nextInt());
+                    String s = methods.scheduleAndTransport(input.nextInt());
                     System.out.println(s);
                     System.out.println("==============================================");
                 case 4:
+                    System.out.println("Enter ID: ");
+                    selectedID = input.nextInt();
+                    System.out.println("PRINTING STUDENT DATA: ");
+                    System.out.println("==============================================");
+                    String st = methods.printStudentInfo(selectedID);
+                    System.out.println(st);
+                    System.out.println("==============================================");
+                    go = true;
+                    break;
+                case 5:
+                    System.out.println("Enter ID: ");
+                    selectedID = input.nextInt();
+                    System.out.println("PRINTING ADMINISTRATIVE DATA: ");
+                    System.out.println("==============================================");
+                    String ad = methods.printAdministrativeInfo(selectedID);
+                    System.out.println(ad);
+                    System.out.println("==============================================");
+                    go = true;
+                    break;
+                case 6:
                     System.out.print("GOOD BYE...");
                     go = false;
                     break;
