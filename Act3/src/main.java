@@ -19,6 +19,7 @@ public class main {
 
 
         while(state){
+
             state = false;
             msg.printMessage();
             selectedOption = scan.nextInt();
@@ -67,6 +68,7 @@ public class main {
                     System.out.println(ctr.getSalary());
                     System.out.println("\n");
                     state = true;
+                    break;
                 case 4:
                     System.out.println("Good Bye...");
                     state = false;
