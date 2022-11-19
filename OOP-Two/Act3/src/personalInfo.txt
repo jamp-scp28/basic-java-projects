@@ -1,0 +1,6 @@
+Nombre: fsdfds 
+Apellido: fdsfdsa 
+Edad: 43 
+Email: jfdsfds 
+Telefono: 343423 
+Direccion: dfdsfds 
